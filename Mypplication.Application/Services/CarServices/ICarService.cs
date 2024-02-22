@@ -8,15 +8,12 @@ using System.Threading.Tasks;
 
 namespace Mypplication.Application.Services.CarServices
 {
-    internal interface ICarService
+    public interface ICarService
     {
         public Task<string> CreateCar(CarDTO cr);
         public Task<string> UpdateCar(int id, CarDTO cr);
         public Task<string> DeleteCar(int id);
         public Task<Car> GetCarById(int id);
         public Task<IEnumerable<Car>> GetAllCars();
-
-
-
     }
 }

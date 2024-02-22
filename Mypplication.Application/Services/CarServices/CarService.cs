@@ -6,7 +6,7 @@ using MyApplication.Infrastruct.Persistance;
 namespace Mypplication.Application.Services.CarServices
 {
 
-    internal class CarService : ICarService
+    public class CarService : ICarService
     {
         private readonly ApplicationDbContext _context;
         public CarService(ApplicationDbContext context)
@@ -78,7 +78,7 @@ namespace Mypplication.Application.Services.CarServices
                 {
                     return x;
                 }
-                return new Car() { Brand = "Null",Model = "Null" };
+                return new Car() { Brand = "Null", Model = "Null" };
             }
             catch
             {
@@ -92,13 +92,14 @@ namespace Mypplication.Application.Services.CarServices
             try
             {
                 var x = await _context.Cars.FirstOrDefaultAsync(x => x.Id == id);
-                if (x is not null)
+                if (x != null)
                 {
                     x.Model = cr.Model;
                     x.Brand = cr.Brand;
-                    x.Price = cr.Price;
                     x.Description = cr.Description;
+                    x.Price = cr.Price;
                     _context.SaveChanges();
+                    return "O'zgerdi";
                 }
                 return "Topilmadi";
             }
