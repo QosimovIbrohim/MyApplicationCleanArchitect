@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MyApplication.Domain\MyApplication.Domain.csproj" />
+    <ProjectReference Include="..\MyApplication.Infrastruct\MyApplication.Infrastruct.csproj" />
   </ItemGroup>
 
 </Project>

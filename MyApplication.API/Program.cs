@@ -1,3 +1,5 @@
+using MyApplication.Infrastruct;
+using Mypplication.Application;
 
 namespace MyApplication.API
 {
@@ -11,8 +13,12 @@ namespace MyApplication.API
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+            
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddAplication();
+            builder.Services.AddInfrastructure(builder.Configuration);
 
             var app = builder.Build();
 

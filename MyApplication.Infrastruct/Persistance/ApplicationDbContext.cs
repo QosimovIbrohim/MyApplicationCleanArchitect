@@ -8,8 +8,8 @@ namespace MyApplication.Infrastruct.Persistance
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)
         {
-            
+
         }
-        DbSet<Car> Cars { get; set; }
+        public DbSet<Car> Cars { get; set; }
     }
 }
