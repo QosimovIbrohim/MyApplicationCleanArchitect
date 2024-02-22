@@ -1,8 +1,7 @@
-﻿using MyApplication.Infrastruct;
-using Microsoft.AspNetCore.Mvc;
-using Mypplication.Application.Services.CarServices;
+﻿using Microsoft.AspNetCore.Mvc;
 using MyApplication.Domain.Entities.DTOs;
 using MyApplication.Domain.Entities.Models;
+using Mypplication.Application.Services.CarServices;
 
 namespace MyApplication.API.Controllers
 {
