@@ -1,4 +1,5 @@
-﻿using MyApplication.Domain.Entities.DTOs;
+﻿using Microsoft.EntityFrameworkCore;
+using MyApplication.Domain.Entities.DTOs;
 using MyApplication.Domain.Entities.Models;
 using MyApplication.Infrastruct.Persistance;
 
@@ -30,23 +31,47 @@ namespace Mypplication.Application.Services.CarServices
             }
             catch
             {
-                return "Qo'shilmadi";
+                return "Qo'shilmadi Error mavjud";
             }
         }
 
-        public Task<string> DeleteCar(int id)
+        public async Task<string> DeleteCar(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var model = await _context.Cars.FirstOrDefaultAsync(x => x.Id == id);
+                if (model is not null)
+                {
+                    _context.Cars.Remove(model);
+                    await _context.SaveChangesAsync();
+                    return "O'chirildi";
+                }
+                else
+                {
+                    return "Toplimadi";
+                }
+            }
+            catch
+            {
+                return "O'chirilmadi Error mavjud";
+            }
         }
 
-        public Task<IEnumerable<Car>> GetAllCars()
+        public async Task<IEnumerable<Car>> GetAllCars()
         {
-            throw new NotImplementedException();
+            try
+            {
+                return await _context.Cars.ToListAsync();
+            }
+            catch
+            {
+                return Enumerable.Empty<Car>();
+            }
         }
 
         public Task<Car> GetCarById(int id)
         {
-            throw new NotImplementedException();
+            var x = await _context.
         }
 
         public Task<string> UpdateCar(int id, CarDTO cr)
