@@ -69,14 +69,43 @@ namespace Mypplication.Application.Services.CarServices
             }
         }
 
-        public Task<Car> GetCarById(int id)
+        public async Task<Car> GetCarById(int id)
         {
-            var x = await _context.
+            try
+            {
+                var x = await _context.Cars.FirstOrDefaultAsync(x => x.Id == id);
+                if (x is not null)
+                {
+                    return x;
+                }
+                return new Car() { Brand = "Null",Model = "Null" };
+            }
+            catch
+            {
+                return new Car() { Brand = "Null", Model = "Null" };
+            }
         }
 
-        public Task<string> UpdateCar(int id, CarDTO cr)
+
+        public async Task<string> UpdateCar(int id, CarDTO cr)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var x = await _context.Cars.FirstOrDefaultAsync(x => x.Id == id);
+                if (x is not null)
+                {
+                    x.Model = cr.Model;
+                    x.Brand = cr.Brand;
+                    x.Price = cr.Price;
+                    x.Description = cr.Description;
+                    _context.SaveChanges();
+                }
+                return "Topilmadi";
+            }
+            catch
+            {
+                return "Error topildi";
+            }
         }
     }
 }
